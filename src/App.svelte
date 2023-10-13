@@ -2,16 +2,10 @@
   // import Repl from "./Repl.svelte";
 
   let inner: Element;
-  let show = true;
   let query = `[:find (pull ?h [*])
             :where
             [?h :block/marker ?marker]
             [(contains? #{"NOW" "DOING"} ?marker)]]`;
-
-  top.document?.addEventListener("visibilitychange", async () => {
-    const visibilityState = top?.document?.visibilityState === 'visible';
-    show = visibilityState;
-  });
 
   const clickOutside = (e: Event) => {
     if (!inner.contains(e.target as any)) {
@@ -19,16 +13,23 @@
     }
   };
 
-  console.log("===Smart Query Launch ===");
+  let inputText :string;
+
+  function createQuery(): void {
+    //parse inputText string into separate values
+    //build Dataloge query based on parsed values
+    //paste query into contents.md file and show in right panel
+  }
+
+  //create event listener for 'enter' to run createQuery()
+
 </script>
 
-{#if show}
-  <p>Show is true</p>
-{/if}
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main on:click={clickOutside}>
-  <div bind:this={inner} class="inner">
-    <h2>Hellow LogSeq</h2>
+  <div bind:this={inner} class="container">
+    <input type="text" bind:value={inputText}/>
+    <button on:click={createQuery}>Submit</button>
   </div>
 </main>
 
@@ -45,7 +46,7 @@
     backdrop-filter: saturate(0.8) blur(10px);
   }
 
-  .inner {
+  .container {
     border: 3px solid #000;
     background: #eee;
     height: 100%;
