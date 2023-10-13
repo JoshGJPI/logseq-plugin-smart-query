@@ -1,3 +1,2 @@
-# Logseq Query Playground Plugin
+# Logseq Smart Query Plugin
 
-![](demo.gif)
