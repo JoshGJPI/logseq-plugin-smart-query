@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+
   // import Repl from "./Repl.svelte";
 
   let inner: Element;
@@ -13,7 +15,15 @@
     }
   };
 
+  let focusRef;
+
+  onMount(() => {
+    focusRef.focus();
+  });
+
   let inputText :string;
+
+  $: console.log(inputText);
 
   function createQuery(): void {
     //parse inputText string into separate values
@@ -28,7 +38,10 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main on:click={clickOutside}>
   <div bind:this={inner} class="container">
-    <input type="text" bind:value={inputText}/>
+    <div class="input-container">
+      <p>Smart Query:</p>
+      <input type="text" bind:value={inputText} bind:this={focusRef}/>
+    </div>
     <button on:click={createQuery}>Submit</button>
   </div>
 </main>
@@ -42,16 +55,49 @@
     left: 0;
     right: 0;
     position: fixed;
-    padding: 10vh 5vw;
-    backdrop-filter: saturate(0.8) blur(10px);
   }
 
   .container {
-    border: 3px solid #000;
-    background: #eee;
-    height: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 20px #888;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    background-color: azure;
+    box-shadow: 0px 0.25rem 0.5rem 0px darkolivegreen;
+    border-radius: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input-container {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    margin: 0;
+    padding-left: 0.5rem;
+  }
+
+  input {
+    font-size: 1.25rem;
+    border: none;
+    margin: 0 0.5rem;
+    width: 600px;
+    background-color: transparent;
+  }
+
+  button {
+    height: 40px;
+    border: none;
+    color: azure;
+    background-color: darkslategray;
+  }
+
+  button:hover {
+    cursor: pointer;
+    opacity: 0.9;
   }
 </style>
