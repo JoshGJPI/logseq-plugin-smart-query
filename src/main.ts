@@ -2,6 +2,7 @@
 
 import "@logseq/libs";
 import App from "./App.svelte";
+import { updateContainerLocation } from "./util";
 
 function createModel() {
   return {
@@ -22,6 +23,8 @@ function main() {
   logseq.setMainUIInlineStyle({
     zIndex: 11
   });
+
+  logseq.App.onSidebarVisibleChanged(updateContainerLocation);
 
   //where shortcuts are registered
   logseq.App.registerCommandPalette(
