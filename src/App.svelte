@@ -25,7 +25,6 @@
 </main>
 
 
-<!-- <Repl bind:query={query} /> -->
 <style>
   main {
     top: 0;
@@ -37,9 +36,9 @@
 
   .container {
     position: fixed;
-    top: 50px;
+    top: 48px;
     background-color: azure;
-    box-shadow: 0px 0.25rem 0.5rem 0px darkolivegreen;
+    box-shadow: 0px 0.25rem 0.5rem 0px rgb(0, 43, 54);
     border-radius: 2px;
 
     display: flex;
@@ -48,14 +47,9 @@
   }
 
   button {
-    height: 40px;
-    border: none;
     color: azure;
-    background-color: darkslategray;
+    background-color: steelblue;
+    padding: 0.8rem;
   }
 
-  button:hover {
-    cursor: pointer;
-    opacity: 0.9;
-  }
 </style>
